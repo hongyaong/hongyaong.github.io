@@ -30,7 +30,7 @@
   {
     "objectID": "about_dataset.html",
     "href": "about_dataset.html",
-    "title": "abouttest",
+    "title": "About Dataset",
     "section": "",
     "text": "Variable\nMeaning\nDataType\nNotes\n\n\n\n\nCustomerID\nUnique Identifier that identifies each customer\nint\nNA\n\n\nAge\nAge of the customer in years\nint\nNA\n\n\nGender\nGender of the customer\nchr\nMale or Female\n\n\nTenure\nTotal amount of of months the customer has been with the company\nint\nNA\n\n\nUsage Frequency\nHow often the customer uses the service\nint\nNA\n\n\nSupport Calls\nNumber of customer support calls made by the customer\nint\nNA\n\n\nPayment Delay\nNumber of days a customer's payment is delayed.\nint\nNA\n\n\nSubscription Type\nType of subscription the customer subscribed for\nchr\nStandard, Basic or Premium\n\n\nContract Length\nLength of customer's contract\nchr\nAnnual, Monthly or Quarterly\n\n\nTotal Spend\nTotal amount spent by the customer on the service in USD\nnum\nNA\n\n\nLast Interaction\nThe number of days since the customer's last interaction with the company\nint\nNA\n\n\nChurn\nWhether the customer has churned or not\nint\nChurned = 1, Not Churned = 0"
   }
