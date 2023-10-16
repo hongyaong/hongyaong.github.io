@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>My Portfolio - Exploratory Data Analysis</title>
+<title>My Portfolio - abouttest</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,6 +59,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -85,13 +88,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./eda.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./eda.html" rel="" target="">
  <span class="menu-text">Exploratory Data Analysis</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about_dataset.html" rel="" target="">
- <span class="menu-text">About Dataset</span></a>
-  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">about_dataset.qmd</span></li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -105,13 +106,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="eda.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="abouttest.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exploratory Data Analysis</h1>
+<h1 class="title">abouttest</h1>
 </div>
 
 
@@ -127,101 +128,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'arrow'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:utils':
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Meaning</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DataType</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CustomerID</td>
+<td style="text-align: left;">Unique Identifier that identifies each customer</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Age</td>
+<td style="text-align: left;">Age of the customer in years</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gender</td>
+<td style="text-align: left;">Gender of the customer</td>
+<td style="text-align: left;">chr</td>
+<td style="text-align: left;">Male or Female</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tenure</td>
+<td style="text-align: left;">Total amount of of months the customer has been with the company</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Usage Frequency</td>
+<td style="text-align: left;">How often the customer uses the service</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Support Calls</td>
+<td style="text-align: left;">Number of customer support calls made by the customer</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Payment Delay</td>
+<td style="text-align: left;">Number of days a customer's payment is delayed.</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Subscription Type</td>
+<td style="text-align: left;">Type of subscription the customer subscribed for</td>
+<td style="text-align: left;">chr</td>
+<td style="text-align: left;">Standard, Basic or Premium</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Contract Length</td>
+<td style="text-align: left;">Length of customer's contract</td>
+<td style="text-align: left;">chr</td>
+<td style="text-align: left;">Annual, Monthly or Quarterly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total Spend</td>
+<td style="text-align: left;">Total amount spent by the customer on the service in USD</td>
+<td style="text-align: left;">num</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Last Interaction</td>
+<td style="text-align: left;">The number of days since the customer's last interaction with the company</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Churn</td>
+<td style="text-align: left;">Whether the customer has churned or not</td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">Churned = 1, Not Churned = 0</td>
+</tr>
+</tbody>
+</table>
 
-    timestamp</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
 
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'sparklyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    filter</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 12
-  CustomerID   Age Gender Tenure `Usage Frequency` `Support Calls`
-       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;             &lt;dbl&gt;           &lt;dbl&gt;
-1          1     1      0      1                 1               1
-# ℹ 6 more variables: `Payment Delay` &lt;dbl&gt;, `Subscription Type` &lt;dbl&gt;,
-#   `Contract Length` &lt;dbl&gt;, `Total Spend` &lt;dbl&gt;, `Last Interaction` &lt;dbl&gt;,
-#   Churn &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="eda_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  18.00   29.00   39.00   39.37   48.00   65.00 </code></pre>
-</div>
-</div>
-<p>Looking at the distribution by age, a large portion of our dataset comes from aged 40-50 years old and a low portion comes from age 50-60 years old.</p>
-<p>The statistic summary of age shows that the mean age is 39.37 and it’s ranging from 18 to 65 years old.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="eda_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>From the Gender Distribution bar chart, we are able to see that we have more Male than Female in this dataset.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="eda_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   1.00   16.00   32.00   31.26   46.00   60.00 </code></pre>
-</div>
-</div>
-<p>Looking at the Distribution by Tenure, it is apparent that the dataset exhibits a generally balanced distribution where majority of Tenure values hover around range of 7000 - 8000 in terms of count. However, for tenure values falling within the ranges of 10-20 and 0-5, there is a slight drop with counts ranging from 6000 to 7000, indicating a comparatively lower frequency of occurrences within these specific tenure ranges.”</p>
-<p>The statistic summary of tenure shows that the dataset mean tenure is 31.26 and it’s ranging from 1 to 60 Tenure.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="eda_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   1.00    9.00   16.00   15.81   23.00   30.00 </code></pre>
-</div>
-</div>
-<p>Looking at the Distribution by Usage Frequency, it is obvious that the dataset exhibits a generally balanced distribution where majority of Tenure values hover around range of 15000 in terms of count. However, for Usage Frequency values &lt; 10, the counts is slightly lower.</p>
-<p>The statistic summary of Usage Frequency shows that the dataset mean Usage Frequency is 15.81 and it’s ranging from 1 to 30 Usage Frequency.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="eda_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.000   1.000   3.000   3.604   6.000  10.000 </code></pre>
-</div>
-</div>
-<p>Looking at the Distribution by Support Calls, there is a downward trend in terms of counts as support calls increases. Support calls of 5 onward has a stable frequency of around 20000.</p>
-<p>The statistic summary of Support Calls shows that the dataset mean Support Calls is 3.604 and it’s ranging from 0 to 10 calls.<br>
-</p>
 
 
 
