@@ -59,6 +59,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -87,10 +90,6 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link active" href="./DSA306project.html" rel="" target="" aria-current="page">
  <span class="menu-text">DSA306 Customer Churn Prediction Analysis</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about_dataset.html" rel="" target="">
- <span class="menu-text">About Dataset</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -127,6 +126,97 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Meaning</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DataType</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CustomerID</td>
+<td style="text-align: left;">Unique Customer Identifier</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Age</td>
+<td style="text-align: left;">Customer's Age in Years</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">18 to 65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gender</td>
+<td style="text-align: left;">Customer's Gender</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">Male or Female</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tenure</td>
+<td style="text-align: left;">Length of Customer Subscription in Months</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">1 to 60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Usage Frequency</td>
+<td style="text-align: left;">Customer’s Frequency of Daily Service Usage</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">1 to 30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Support Calls</td>
+<td style="text-align: left;">Number of Support Calls made by Customer</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">0 (None) to 10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Payment Delay</td>
+<td style="text-align: left;">Customer’s Payment Delay in Days</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">0 (None) to 30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Subscription Type</td>
+<td style="text-align: left;">Chosen Subscription by Customer</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">Basic, Standard or Premium</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Contract Length</td>
+<td style="text-align: left;">Customer Service Contract Duration</td>
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">Monthly, Quarterly or Annually</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total Spend</td>
+<td style="text-align: left;">Customer Total Spending on Service in USD</td>
+<td style="text-align: left;">Float</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Last Interaction</td>
+<td style="text-align: left;">Days since Customer Last Interact with the Company</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">1 to 30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Churn</td>
+<td style="text-align: left;">Customer Discontinuation with the Service</td>
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">1 (Yes) or 0 (No)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Exploratory Data Analysis (EDA)</strong></p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>FileSystemDataset (query)
 CustomerID: string
@@ -146,11 +236,6 @@ See $.data for the source Arrow object</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Missing values are always removed in SQL aggregation functions.
-Use `na.rm = TRUE` to silence this warning
-This warning is displayed once every 8 hours.</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="DSA306project_files/figure-html/eda-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -184,123 +269,113 @@ This warning is displayed once every 8 hours.</code></pre>
 <div class="cell-output-display">
 <p><img src="DSA306project_files/figure-html/eda-11.png" class="img-fluid" width="672"></p>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
-ℹ Please use `all_of()` or `any_of()` instead.
-  # Was:
-  data %&gt;% select(columns)
-
-  # Now:
-  data %&gt;% select(all_of(columns))
-
-See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Correlation method: 'pearson' Missing treated using: 'pairwise.complete.obs'
-• `` -&gt; `...1`
-• `` -&gt; `...2`
-• `` -&gt; `...3`
-• `` -&gt; `...4`
-• `` -&gt; `...5`
-• `` -&gt; `...6`
-• `` -&gt; `...7`</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="DSA306project_files/figure-html/eda-12.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Scale for fill is already present.
-Adding another scale for fill, which will replace the existing scale.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="DSA306project_files/figure-html/eda-13.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><strong>Model 1</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.93547</code></pre>
+<pre><code>[1] "AUC for model 1: 0.935469957012298"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1 73745</code></pre>
+<pre><code>     [,1]  [,2] 
+[1,] 73745 10198
+[2,] 8608  58403</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1  8608</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1 58403</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1 10198</code></pre>
+<pre><code>  accuracy precision Type 1 error Type 2 error  Recall_1
+1 0.875419 0.8954744    0.1284565    0.1214872 0.8785128</code></pre>
 </div>
 </div>
+<p><strong>Model 1a</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   areaUnderROC elastic_net_param_1 reg_param_1
-1     0.9353873                 1.0       0.001
-2     0.9353858                 0.6       0.001
-3     0.9353857                 0.8       0.001
-4     0.9353810                 0.4       0.001
-5     0.9353750                 0.2       0.001
-6     0.9353685                 0.0       0.001
-7     0.9352377                 0.0       0.005
-8     0.9352313                 0.2       0.005
-9     0.9352001                 0.4       0.005
-10    0.9351581                 0.6       0.005
-11    0.9350905                 0.8       0.005
-12    0.9350411                 0.0       0.010
-13    0.9349928                 1.0       0.005
-14    0.9349557                 0.2       0.010
-15    0.9348017                 0.4       0.010
-16    0.9345305                 0.6       0.010
-17    0.9341040                 0.8       0.010
-18    0.9334754                 1.0       0.010</code></pre>
+1     0.9353872                 1.0       0.001
+2     0.9353861                 0.8       0.001
+3     0.9353853                 0.6       0.001
+4     0.9353809                 0.4       0.001
+5     0.9353747                 0.2       0.001
+6     0.9353677                 0.0       0.001
+7     0.9352379                 0.0       0.005
+8     0.9352318                 0.2       0.005
+9     0.9352004                 0.4       0.005
+10    0.9351589                 0.6       0.005
+11    0.9350906                 0.8       0.005
+12    0.9350416                 0.0       0.010
+13    0.9349923                 1.0       0.005
+14    0.9349555                 0.2       0.010
+15    0.9348021                 0.4       0.010
+16    0.9345304                 0.6       0.010
+17    0.9341037                 0.8       0.010
+18    0.9334752                 1.0       0.010</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9354827</code></pre>
+<pre><code>[1] "AUC for model 1a: 0.935482660776576"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]  [,2] 
+[1,] 73690 10253
+[2,] 8536  58475</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   accuracy precision Type 1 error Type 2 error    Recall
+1 0.8755316 0.8961886    0.1273821    0.1221424 0.8778576</code></pre>
 </div>
 </div>
+<p><strong>Model 2</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.935282</code></pre>
+<pre><code>[1] "AUC for model 2: 0.935282038899156"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]  [,2] 
+[1,] 73731 10212
+[2,] 8610  58401</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  accuracy precision Type 1 error Type 2 error   Recall
+1 0.875313 0.8954348    0.1284864     0.121654 0.878346</code></pre>
 </div>
 </div>
+<p><strong>Model 2a</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   areaUnderROC reg_param_1 elastic_net_param_1
-1     0.9351234       0.001                 1.0
-2     0.9351213       0.001                 0.8
-3     0.9351144       0.001                 0.6
-4     0.9351126       0.001                 0.4
-5     0.9351080       0.001                 0.2
-6     0.9351034       0.001                 0.0
-7     0.9349748       0.005                 0.0
-8     0.9349724       0.005                 0.2
-9     0.9349456       0.005                 0.4
-10    0.9349040       0.005                 0.6
-11    0.9348399       0.005                 0.8
-12    0.9347787       0.010                 0.0
-13    0.9347480       0.005                 1.0
-14    0.9347057       0.010                 0.2
-15    0.9345484       0.010                 0.4
-16    0.9342947       0.010                 0.6
-17    0.9338951       0.010                 0.8
-18    0.9333090       0.010                 1.0</code></pre>
+<pre><code>   areaUnderROC elastic_net_param_1 reg_param_1
+1     0.9351232                 0.8       0.001
+2     0.9351220                 1.0       0.001
+3     0.9351169                 0.6       0.001
+4     0.9351137                 0.4       0.001
+5     0.9351096                 0.2       0.001
+6     0.9351032                 0.0       0.001
+7     0.9349717                 0.0       0.005
+8     0.9349693                 0.2       0.005
+9     0.9349492                 0.4       0.005
+10    0.9349034                 0.6       0.005
+11    0.9348391                 0.8       0.005
+12    0.9347735                 0.0       0.010
+13    0.9347519                 1.0       0.005
+14    0.9347061                 0.2       0.010
+15    0.9345514                 0.4       0.010
+16    0.9342925                 0.6       0.010
+17    0.9338945                 0.8       0.010
+18    0.9333120                 1.0       0.010</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9352806</code></pre>
+<pre><code>[1] "AUC for model 2a: 0.935280551815638"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]  [,2] 
+[1,] 73696 10247
+[2,] 8568  58443</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   accuracy precision Type 1 error Type 2 error    Recall
+1 0.8753594 0.8958475    0.1278596    0.1220709 0.8779291</code></pre>
 </div>
 </div>
 
