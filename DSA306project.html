@@ -84,8 +84,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
-  <li class="dropdown-header">
- <span class="menu-text">eda.qmd</span></li>
+  <li class="nav-item">
+    <a class="nav-link active" href="./DSA306project.html" rel="" target="" aria-current="page">
+ <span class="menu-text">DSA306 Customer Churn Prediction Analysis</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about_dataset.html" rel="" target="">
  <span class="menu-text">About Dataset</span></a>
@@ -125,9 +127,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>This query requires a full table scan, so glimpse() may be expensive. Call `compute()` to evaluate the query first.</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>FileSystemDataset (query)
 CustomerID: string
@@ -223,12 +222,6 @@ Adding another scale for fill, which will replace the existing scale.</code></pr
 <pre><code>[1] 0.93547</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8755538</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.927312</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   count
   &lt;int&gt;
@@ -252,322 +245,62 @@ Adding another scale for fill, which will replace the existing scale.</code></pr
   &lt;int&gt;
 1 10198</code></pre>
 </div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/Modelling-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'leaps' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/Modelling 2-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 8</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Subset selection object
-Call: regsubsets.formula(Churn ~ ., data = ct_r, method = "backward")
-18 Variables  (and intercept)
-                            Forced in Forced out
-Age                             FALSE      FALSE
-GenderMale                      FALSE      FALSE
-Tenure                          FALSE      FALSE
-`Usage Frequency`               FALSE      FALSE
-`Support Calls`                 FALSE      FALSE
-`Payment Delay`                 FALSE      FALSE
-`Subscription Type`Premium      FALSE      FALSE
-`Subscription Type`Standard     FALSE      FALSE
-`Contract Length`Monthly        FALSE      FALSE
-`Contract Length`Quarterly      FALSE      FALSE
-`Total Spend`                   FALSE      FALSE
-`Last Interaction`              FALSE      FALSE
-`Customer Type`Non-Churn        FALSE      FALSE
-`Age Group`Middle               FALSE      FALSE
-`Age Group`Senior               FALSE      FALSE
-`Age Group`Young                FALSE      FALSE
-`Payment Group`Short            FALSE      FALSE
-`Spend Group`Short              FALSE      FALSE
-1 subsets of each size up to 8
-Selection Algorithm: backward
-         Age GenderMale Tenure `Usage Frequency` `Support Calls`
-1  ( 1 ) " " " "        " "    " "               " "            
-2  ( 1 ) " " " "        " "    " "               "*"            
-3  ( 1 ) " " " "        " "    " "               "*"            
-4  ( 1 ) " " " "        " "    " "               "*"            
-5  ( 1 ) " " " "        " "    " "               "*"            
-6  ( 1 ) "*" " "        " "    " "               "*"            
-7  ( 1 ) "*" "*"        " "    " "               "*"            
-8  ( 1 ) "*" "*"        " "    " "               "*"            
-         `Payment Delay` `Subscription Type`Premium `Subscription Type`Standard
-1  ( 1 ) " "             " "                        " "                        
-2  ( 1 ) " "             " "                        " "                        
-3  ( 1 ) " "             " "                        " "                        
-4  ( 1 ) " "             " "                        " "                        
-5  ( 1 ) "*"             " "                        " "                        
-6  ( 1 ) "*"             " "                        " "                        
-7  ( 1 ) "*"             " "                        " "                        
-8  ( 1 ) "*"             " "                        " "                        
-         `Contract Length`Monthly `Contract Length`Quarterly `Total Spend`
-1  ( 1 ) " "                      " "                        " "          
-2  ( 1 ) " "                      " "                        " "          
-3  ( 1 ) "*"                      " "                        " "          
-4  ( 1 ) "*"                      " "                        "*"          
-5  ( 1 ) "*"                      " "                        "*"          
-6  ( 1 ) "*"                      " "                        "*"          
-7  ( 1 ) "*"                      " "                        "*"          
-8  ( 1 ) "*"                      " "                        "*"          
-         `Last Interaction` `Customer Type`Non-Churn `Age Group`Middle
-1  ( 1 ) " "                "*"                      " "              
-2  ( 1 ) " "                "*"                      " "              
-3  ( 1 ) " "                "*"                      " "              
-4  ( 1 ) " "                "*"                      " "              
-5  ( 1 ) " "                "*"                      " "              
-6  ( 1 ) " "                "*"                      " "              
-7  ( 1 ) " "                "*"                      " "              
-8  ( 1 ) "*"                "*"                      " "              
-         `Age Group`Senior `Age Group`Young `Payment Group`Short
-1  ( 1 ) " "               " "              " "                 
-2  ( 1 ) " "               " "              " "                 
-3  ( 1 ) " "               " "              " "                 
-4  ( 1 ) " "               " "              " "                 
-5  ( 1 ) " "               " "              " "                 
-6  ( 1 ) " "               " "              " "                 
-7  ( 1 ) " "               " "              " "                 
-8  ( 1 ) " "               " "              " "                 
-         `Spend Group`Short
-1  ( 1 ) " "               
-2  ( 1 ) " "               
-3  ( 1 ) " "               
-4  ( 1 ) " "               
-5  ( 1 ) " "               
-6  ( 1 ) " "               
-7  ( 1 ) " "               
-8  ( 1 ) " "               </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9354546</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8756</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9273067</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1 73749</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1  8605</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1 58406</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  count
-  &lt;int&gt;
-1 10194</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/Modelling 2-2.png" class="img-fluid" width="672"></p>
-</div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   areaUnderROC elastic_net_param_1 reg_param_1
-1     0.9353725                 0.9       0.001
-2     0.9353708                 0.8       0.001
-3     0.9353699                 0.7       0.001
-4     0.9353667                 0.6       0.001
-5     0.9353646                 0.5       0.001
-6     0.9353617                 0.4       0.001
-7     0.9353585                 0.3       0.001
-8     0.9353546                 0.2       0.001
-9     0.9353515                 0.1       0.001
-10    0.9353416                 0.7       0.002
-11    0.9353414                 0.8       0.002
-12    0.9353411                 0.6       0.002
-13    0.9353400                 0.9       0.002
-14    0.9353392                 0.5       0.002
-15    0.9353357                 0.4       0.002
-16    0.9353347                 0.3       0.002
-17    0.9353312                 0.2       0.002
-18    0.9353255                 0.1       0.002
-19    0.9353005                 0.4       0.003
-20    0.9353001                 0.3       0.003
-21    0.9352989                 0.5       0.003
-22    0.9352989                 0.2       0.003
-23    0.9352973                 0.6       0.003
-24    0.9352943                 0.1       0.003
-25    0.9352917                 0.7       0.003
-26    0.9352852                 0.8       0.003
-27    0.9352753                 0.9       0.003
-28    0.9352603                 0.2       0.004
-29    0.9352590                 0.3       0.004
-30    0.9352584                 0.1       0.004
-31    0.9352553                 0.4       0.004
-32    0.9352469                 0.5       0.004
-33    0.9352359                 0.6       0.004
-34    0.9352206                 0.7       0.004
-35    0.9352187                 0.1       0.005
-36    0.9352175                 0.2       0.005
-37    0.9352112                 0.3       0.005
-38    0.9352001                 0.8       0.004
-39    0.9351985                 0.4       0.005
-40    0.9351818                 0.5       0.005
-41    0.9351783                 0.9       0.004
-42    0.9351772                 0.1       0.006
-43    0.9351711                 0.2       0.006
-44    0.9351580                 0.6       0.005
-45    0.9351564                 0.3       0.006
-46    0.9351349                 0.4       0.006
-47    0.9351339                 0.1       0.007
-48    0.9351293                 0.7       0.005
-49    0.9351213                 0.2       0.007
-50    0.9351044                 0.5       0.006
-51    0.9350989                 0.3       0.007
-52    0.9350904                 0.8       0.005
-53    0.9350888                 0.1       0.008
-54    0.9350690                 0.2       0.008
-55    0.9350650                 0.6       0.006
-56    0.9350635                 0.4       0.007
-57    0.9350456                 0.9       0.005
-58    0.9350427                 0.1       0.009
-59    0.9350330                 0.3       0.008
-60    0.9350161                 0.5       0.007
-61    0.9350137                 0.7       0.006
-62    0.9350124                 0.2       0.009
-63    0.9349968                 0.1       0.010
-64    0.9349825                 0.4       0.008
-65    0.9349641                 0.3       0.009
-66    0.9349555                 0.2       0.010
-67    0.9349552                 0.6       0.007
-68    0.9349525                 0.8       0.006
-69    0.9349158                 0.5       0.008
-70    0.9348955                 0.4       0.009
-71    0.9348912                 0.3       0.010
-72    0.9348780                 0.9       0.006
-73    0.9348779                 0.7       0.007
-74    0.9348292                 0.6       0.008
-75    0.9348053                 0.5       0.009
-76    0.9348028                 0.4       0.010
-77    0.9347844                 0.8       0.007
-78    0.9347214                 0.7       0.008
-79    0.9346881                 0.6       0.009
-80    0.9346831                 0.5       0.010
-81    0.9346726                 0.9       0.007
-82    0.9345879                 0.8       0.008
-83    0.9345394                 0.7       0.009
-84    0.9345301                 0.6       0.010
-85    0.9344269                 0.9       0.008
-86    0.9343601                 0.8       0.009
-87    0.9343384                 0.7       0.010
-88    0.9341421                 0.9       0.009
-89    0.9341033                 0.8       0.010
-90    0.9338163                 0.9       0.010</code></pre>
+1     0.9353873                 1.0       0.001
+2     0.9353858                 0.6       0.001
+3     0.9353857                 0.8       0.001
+4     0.9353810                 0.4       0.001
+5     0.9353750                 0.2       0.001
+6     0.9353685                 0.0       0.001
+7     0.9352377                 0.0       0.005
+8     0.9352313                 0.2       0.005
+9     0.9352001                 0.4       0.005
+10    0.9351581                 0.6       0.005
+11    0.9350905                 0.8       0.005
+12    0.9350411                 0.0       0.010
+13    0.9349928                 1.0       0.005
+14    0.9349557                 0.2       0.010
+15    0.9348017                 0.4       0.010
+16    0.9345305                 0.6       0.010
+17    0.9341040                 0.8       0.010
+18    0.9334754                 1.0       0.010</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>PipelineModel (Transformer) with 10 stages
-&lt;pipeline__bd922778_72c4_4d17_8607_22269966fef1&gt; 
-  Stages 
-  |--1 VectorAssembler (Transformer)
-  |    &lt;vector_assembler__1dadeb19_f6d8_450b_a5b4_14da9aeb3337&gt; 
-  |     (Parameters -- Column Names)
-  |      input_cols: Tenure, Usage Frequency, Support Calls, Last Interaction
-  |      output_col: features
-  |--2 StandardScalerModel (Transformer)
-  |    &lt;standard_scaler__44043676_61e3_44e4_865a_dc309e39a117&gt; 
-  |     (Parameters -- Column Names)
-  |      input_col: features
-  |      output_col: stdz_features
-  |     (Transformer Info)
-  |      mean:  num [1:4] 31.34 15.71 3.83 14.62 
-  |      std:  num [1:4] 17.24 8.62 3.13 8.6 
-  |--3 StringIndexerModel (Transformer)
-  |    &lt;string_indexer__b8de5d00_b5eb_4709_8cb8_34511e41e56e&gt; 
-  |     (Parameters -- Column Names)
-  |      input_col: Age Group
-  |      output_col: Age_Group_indexed
-  |     (Transformer Info)
-  |      labels:  chr [1:4] "Middle" "Young" "Mid-Middle" "Senior" 
-  |--4 StringIndexerModel (Transformer)
-  |    &lt;string_indexer__7df4e1e5_e8ec_4fb5_b5d0_370e91471cd6&gt; 
-  |     (Parameters -- Column Names)
-  |      input_col: Gender
-  |      output_col: Gender_indexed
-  |     (Transformer Info)
-  |      labels:  chr [1:2] "Male" "Female" 
-  |--5 StringIndexerModel (Transformer)
-  |    &lt;string_indexer__fb7d8c1c_77e1_4cd6_8579_676f668f8593&gt; 
-  |     (Parameters -- Column Names)
-  |      input_col: Contract Length
-  |      output_col: Contract_Length_indexed
-  |     (Transformer Info)
-  |      labels:  chr [1:3] "Annual" "Quarterly" "Monthly" 
-  |--6 StringIndexerModel (Transformer)
-  |    &lt;string_indexer__e94895ba_7eac_46fe_a563_bd6f2ea8968d&gt; 
-  |     (Parameters -- Column Names)
-  |      input_col: Payment Group
-  |      output_col: Payment_Group_indexed
-  |     (Transformer Info)
-  |      labels:  chr [1:2] "Short" "Long" 
-  |--7 StringIndexerModel (Transformer)
-  |    &lt;string_indexer__eece2ed6_73e0_4ae2_a230_b690c6df03c9&gt; 
-  |     (Parameters -- Column Names)
-  |      input_col: Spend Group
-  |      output_col: Spend_Group_indexed
-  |     (Transformer Info)
-  |      labels:  chr [1:2] "Long" "Short" 
-  |--8 OneHotEncoderModel (Transformer)
-  |    &lt;one_hot_encoder__078ade4b_fae7_4e42_a08b_28c4ef4b92bf&gt; 
-  |     (Parameters -- Column Names)
-  |      input_cols: Gender_indexed, Contract_Length_indexed, Age_Group_indexed, Payment_Group_indexed, Spend_Group_indexed
-  |      output_col: one_hot_encoder__078ade4b_fae7_4e42_a08b_28c4ef4b92bf__output
-  |      output_cols: Gender_encoded, Contract_Length_encoded, Age_Group_encoded, Payment_Group_encoded, Spend_Group_encoded
-  |     (Transformer Info)
-  |      category_sizes:  int [1:5] 2 3 4 2 2 
-  |--9 VectorAssembler (Transformer)
-  |    &lt;vector_assembler__5b5a3014_1251_451a_bddb_ea9f98b03f0e&gt; 
-  |     (Parameters -- Column Names)
-  |      input_cols: stdz_features, Gender_encoded, Age_Group_encoded, Contract_Length_encoded, Payment_Group_encoded, Spend_Group_encoded
-  |      output_col: final_features
-  |--10 LogisticRegressionModel (Transformer)
-  |    &lt;logistic_regression__122ddc0a_4643_4ad4_9ed6_a46774cc6232&gt; 
-  |     (Parameters -- Column Names)
-  |      features_col: final_features
-  |      label_col: Churn
-  |      prediction_col: prediction
-  |      probability_col: probability
-  |      raw_prediction_col: rawPrediction
-  |     (Transformer Info)
-  |      coefficient_matrix:  num [1, 1:12] 0 -0.111 1.176 0.243 -0.643 ... 
-  |      coefficients:  num [1:12] 0 -0.111 1.176 0.243 -0.643 ... 
-  |      intercept:  num 6.89 
-  |      intercept_vector:  num 6.89 
-  |      num_classes:  int 2 
-  |      num_features:  int 12 
-  |      threshold:  num 0.5 
-  |      thresholds:  num [1:2] 0.5 0.5 </code></pre>
+<pre><code>[1] 0.9354827</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.935282</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   areaUnderROC reg_param_1 elastic_net_param_1
+1     0.9351234       0.001                 1.0
+2     0.9351213       0.001                 0.8
+3     0.9351144       0.001                 0.6
+4     0.9351126       0.001                 0.4
+5     0.9351080       0.001                 0.2
+6     0.9351034       0.001                 0.0
+7     0.9349748       0.005                 0.0
+8     0.9349724       0.005                 0.2
+9     0.9349456       0.005                 0.4
+10    0.9349040       0.005                 0.6
+11    0.9348399       0.005                 0.8
+12    0.9347787       0.010                 0.0
+13    0.9347480       0.005                 1.0
+14    0.9347057       0.010                 0.2
+15    0.9345484       0.010                 0.4
+16    0.9342947       0.010                 0.6
+17    0.9338951       0.010                 0.8
+18    0.9333090       0.010                 1.0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9354514</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8755277</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9273523</code></pre>
+<pre><code>[1] 0.9352806</code></pre>
 </div>
 </div>
 
