@@ -277,7 +277,7 @@ See $.data for the source Arrow object</code></pre>
 <p><img src="DSA306project_files/figure-html/eda-13.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Model 1</strong></p>
+<p><strong>Logistic Modelling - Model 1</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 1: 0.935469957012298"</code></pre>
@@ -295,27 +295,27 @@ See $.data for the source Arrow object</code></pre>
 1 0.875419 0.8954744    0.1284565    0.1214872 0.8785128</code></pre>
 </div>
 </div>
-<p><strong>Model 1a</strong></p>
+<p><strong>Logistic Modelling - Model 1 (CV)</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   areaUnderROC elastic_net_param_1 reg_param_1
-1     0.9353869                 0.8       0.001
-2     0.9353869                 1.0       0.001
-3     0.9353860                 0.6       0.001
-4     0.9353812                 0.4       0.001
-5     0.9353751                 0.2       0.001
+1     0.9353873                 1.0       0.001
+2     0.9353866                 0.8       0.001
+3     0.9353852                 0.6       0.001
+4     0.9353816                 0.4       0.001
+5     0.9353749                 0.2       0.001
 6     0.9353684                 0.0       0.001
-7     0.9352373                 0.0       0.005
-8     0.9352324                 0.2       0.005
-9     0.9352004                 0.4       0.005
-10    0.9351582                 0.6       0.005
+7     0.9352382                 0.0       0.005
+8     0.9352319                 0.2       0.005
+9     0.9351997                 0.4       0.005
+10    0.9351574                 0.6       0.005
 11    0.9350911                 0.8       0.005
-12    0.9350408                 0.0       0.010
-13    0.9349926                 1.0       0.005
-14    0.9349561                 0.2       0.010
-15    0.9348024                 0.4       0.010
-16    0.9345295                 0.6       0.010
-17    0.9341037                 0.8       0.010
+12    0.9350407                 0.0       0.010
+13    0.9349922                 1.0       0.005
+14    0.9349559                 0.2       0.010
+15    0.9348013                 0.4       0.010
+16    0.9345296                 0.6       0.010
+17    0.9341032                 0.8       0.010
 18    0.9334750                 1.0       0.010</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -334,7 +334,7 @@ See $.data for the source Arrow object</code></pre>
 1 0.8755316 0.8961886    0.1273821    0.1221424 0.8778576</code></pre>
 </div>
 </div>
-<p><strong>Model 2</strong></p>
+<p><strong>Logistic Modelling - Model 2</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 2: 0.935282038899156"</code></pre>
@@ -352,28 +352,28 @@ See $.data for the source Arrow object</code></pre>
 1 0.875313 0.8954348    0.1284864     0.121654 0.878346</code></pre>
 </div>
 </div>
-<p><strong>Model 2a</strong></p>
+<p><strong>Logistic Modelling - Model 2 (CV)</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   areaUnderROC reg_param_1 elastic_net_param_1
-1     0.9351234       0.001                 1.0
-2     0.9351219       0.001                 0.8
-3     0.9351168       0.001                 0.6
-4     0.9351149       0.001                 0.4
-5     0.9351087       0.001                 0.2
-6     0.9351018       0.001                 0.0
-7     0.9349744       0.005                 0.0
-8     0.9349702       0.005                 0.2
-9     0.9349464       0.005                 0.4
-10    0.9349026       0.005                 0.6
-11    0.9348406       0.005                 0.8
-12    0.9347791       0.010                 0.0
-13    0.9347509       0.005                 1.0
-14    0.9347038       0.010                 0.2
-15    0.9345493       0.010                 0.4
+1     0.9351235       0.001                 1.0
+2     0.9351213       0.001                 0.8
+3     0.9351169       0.001                 0.6
+4     0.9351131       0.001                 0.4
+5     0.9351084       0.001                 0.2
+6     0.9350997       0.001                 0.0
+7     0.9349750       0.005                 0.0
+8     0.9349695       0.005                 0.2
+9     0.9349462       0.005                 0.4
+10    0.9349036       0.005                 0.6
+11    0.9348427       0.005                 0.8
+12    0.9347778       0.010                 0.0
+13    0.9347511       0.005                 1.0
+14    0.9347054       0.010                 0.2
+15    0.9345496       0.010                 0.4
 16    0.9342933       0.010                 0.6
-17    0.9338940       0.010                 0.8
-18    0.9333114       0.010                 1.0</code></pre>
+17    0.9338943       0.010                 0.8
+18    0.9333122       0.010                 1.0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 2a: 0.935280551815638"</code></pre>
@@ -389,6 +389,11 @@ See $.data for the source Arrow object</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>   accuracy precision Type 1 error Type 2 error    Recall
 1 0.8753594 0.8958475    0.1278596    0.1220709 0.8779291</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Model successfully saved.</code></pre>
 </div>
 </div>
 
