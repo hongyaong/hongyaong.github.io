@@ -125,6 +125,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><strong>Introduction</strong></p>
+<p>For this project, our group worked on a customer churn dataset. This dataset is centred around a telecommunications company, where it provides information on how customers are utilising the services and also indicates whether a customer has churned. Customer churn denotes whether a customer has decided to discontinue their subscription to the company’s mobile services within a period of time. It allows the company to assess factors contributing to customer turnover and make informed decisions to retain customers. This project aims to propose a model to predict potential customer churners. To do so, spark will be leveraged to push computations and techniques such as exploratory data analysis and modelling will be employed.</p>
 <p><strong>Dataset codebook</strong></p>
 <div class="cell">
 <div class="cell-output-display">
@@ -217,6 +219,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p><strong>Exploratory Data Analysis (EDA)</strong></p>
+<p>To better understand our dataset, we conducted EDA to examine the distribution of independent variables and their relationships with the dependent variable. To enhance the clarity in our visualizations, we labelled <code>Churn</code> (1 and 0) as “Churn” and “Non-Churn” respectively. The figures accompanying our analysis can be found in the Appendix.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>FileSystemDataset (query)
@@ -237,47 +240,121 @@ See $.data for the source Arrow object</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-1.png" class="img-fluid" width="672"></p>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing values are always removed in SQL aggregation functions.
+Use `na.rm = TRUE` to silence this warning
+This warning is displayed once every 8 hours.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-2.png" class="img-fluid" width="672"></p>
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We observe an equal distribution of churn and non-churn customers, with 280,492 and 224,714 instances, respectively. This balanced class distribution ensures that the dataset will not introduce bias in model prediction and prevent the model from favouring the majority class.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can observe that among churn customers, age is uniformly distributed across the 20 to 60 years old range. In contrast, non-churn customers tend to be concentrated between 30 and 50 years old, with a notable decrease in the proportion of aged 50 to 60 years old. Since there is a notable difference in the distribution, Age is possibly a significant variable.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We notice that among churn customers, the number of males and females is quite similar. In contrast, among non-churn customers, there is a considerably higher count of males compared to females. Disparity in distribution suggests that Gender might be significant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The distribution of tenure does not show a notable disparity between churn and non-churn customers. There are minor variations, with non-churn customers showing slightly higher and lower proportions in the 10 and 20 months range respectively. This suggests that Tenure might be insignificant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is a small difference in the distribution of usage frequency within the 0-10 days range, with a slightly higher proportion of churn customers compared to non-churn customers. As such, Usage Frequency might be insignificant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The majority of non-churn customers make fewer than 4 support calls. As a result, for support call counts less than 4, there are more non-churn customers than churn customers, while the opposite is observed for support call counts between 4 and 10. Notable difference in distribution suggests that Support Calls are significant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We observe that non-churn customers are concentrated in less than 20 days. However, among churn customers, the distribution is more even, with a slightly higher proportion having payment delays exceeding 20 days. Disparity in distribution seems to suggest that Payment Delay is significant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We do not observe any distinction in the subscription preferences among churn and non-churn customers respectively. Therefore, Subscription Type might be insignificant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We noticed that non-churn customers tend to avoid signing up for monthly contracts. Whereas, for churn customers, there is a relatively even distribution. Huge difference in distribution suggests that Contact Length might be significant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can observe that churn customers exhibit a relatively even distribution in terms of total amount spent, whereas non-churn customers tend to concentrate on total amount spent exceeding $500 range. Disparity in distribution seems to suggest that Total Spend might be significant.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We observe that churn customers show a relatively even distribution in terms of the number of days since their last interaction with the company. In contrast, a significant proportion of non-churn customers are concentrated around less than 15 days since their last interaction. Notable difference in distribution suggests that Last Interaction is significant.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+ℹ Please use `all_of()` or `any_of()` instead.
+  # Was:
+  data %&gt;% select(columns)
+
+  # Now:
+  data %&gt;% select(all_of(columns))
+
+See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Correlation method: 'pearson' Missing treated using: 'pairwise.complete.obs'
+• `` -&gt; `...1`
+• `` -&gt; `...2`
+• `` -&gt; `...3`
+• `` -&gt; `...4`
+• `` -&gt; `...5`
+• `` -&gt; `...6`
+• `` -&gt; `...7`</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-3.png" class="img-fluid" width="672"></p>
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Scale for fill is already present.
+Adding another scale for fill, which will replace the existing scale.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-4.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-5.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-6.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-7.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-8.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-9.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-10.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-11.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-12.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="DSA306project_files/figure-html/eda-13.png" class="img-fluid" width="672"></p>
+<p><img src="DSA306project_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>We observe the absence of significant relationships among the predictors, which indicates a low probability of multicollinearity. Hence, these attributes enhance the model capacity to independently estimate the relationship between independent and target variables. A significant correlation coefficient of 0.52 is observed between Churn and Support Calls. This implies that a higher number of support calls may reflect underlying product issues, leading to increased customer difficulties and a greater likelihood of subscription cancellations, thus, increasing churn rates</p>
+<p><strong>Feature Engineering</strong></p>
+<p>We have applied various feature engineering techniques to pre-process our features and enhance their quality, before training our models to improve the overall performance.</p>
+<p>We performed data binning on selected numeric variables, transforming them into categorical variables (Figure 14). Based on our EDA findings, we identify three variables - “Age”, “Total Spend” and “Payment Delay” - that display a non-monotonic relationship (step function) with the target variable. These variables exhibit a uniform distribution within specific intervals, leading us to bin them accordingly based on those intervals.</p>
+<p>We built a Spark ML pipeline to integrate a series of transformation steps and algorithms on our train dataset into a single workflow. In the initial stage, we utilize the ft_standard_scaler function to standardise our numeric variables on a constant scale. This ensures that our numeric variables maintain a uniform scale and thus, prevents the model from being biassed towards variables with larger scales. Subsequently, we utilise ft_one_hot_encoder functions to encode categorical variables into numerical representations, generating binary columns for each distinct category (except for the base). This allows us to include those variables into our models since most algorithms require numeric inputs. In the final step of our process, following the transformation of our variables, we apply the ml_logistic_regression function on our dataset, given its suitability in binary classification and its ease in interpreting results.</p>
+<p><strong>Model Training and Evaluation</strong> We utilise the sdf_random_split function to partition our dataset into training and test subsets, with a 70-30 ratio, and set the seed to 1234 to ensure reproducibility. After constructing our ML pipeline, we employ the ml_fit function to fit the training dataset into the pipeline, generating a pipeline model. We then utilize the ml_transform function to execute the pipeline model on the test dataset which allows us to assess the performance of our model and evaluate its effectiveness in handling unseen data.</p>
+<p>We decided to utilise three metrics - AreaUnderROC, Precision and Recall - to evaluate the performance of our model using the test dataset. They range from 0 to 1, with a higher value indicating better performance. The AreaUnderROC is useful in evaluating the model’s ability to classify between churn and non-churn customers at various thresholds.</p>
+<p>A confusion matrix was created to calculate the Precision and Recall of our model performance. Precision evaluates the accuracy of positive predictions made by our model, providing us with the proportion of actually churned customers among those predicted as churned. Recall measures our model’s ability to capture all actual churned customers, providing the proportion of correctly predicted churn customers among those who actually churned.</p>
+<p>Having obtained our models, we can then look to employ regularisation techniques. Regularisation will help prevent overfitting of our model by imposing penalties on our coefficients. There are 3 regularisation techniques considered - LASSO Regularisation, Ridge Regularisation and Elastic Net Regularisation. In order to employ these 3 techniques, we have utilised the ml_cross_validator function to specify our alpha and lambda values. Whereby, elastic_net_param (alpha) has been set from 0 to 1 in increments of 0.2 and reg_param (lambda) has taken the values of 0.001, 0.005 and 0.01. Performance Metric ROC is then used to identify the best set of hyperparameters to be reimplemented into the initial pipeline.</p>
 <p><strong>Logistic Modelling - Model 1</strong></p>
+<p>We initially begin with a base model, utilising all the available variables in the dataset and maintaining the default threshold within the model function.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 1: 0.935469957012298"</code></pre>
@@ -296,27 +373,28 @@ See $.data for the source Arrow object</code></pre>
 </div>
 </div>
 <p><strong>Logistic Modelling - Model 1 (CV)</strong></p>
+<p>Applying regularisation, it was determined that the best set of values were 0 and 0.001 for alpha and lambda values respectively. This indicates that a LASSO regularisation was favoured over the other 2 regularisation techniques. Model 1 (CV)’s performance metrics can be viewed in the table below.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   areaUnderROC elastic_net_param_1 reg_param_1
-1     0.9353873                 1.0       0.001
-2     0.9353866                 0.8       0.001
-3     0.9353852                 0.6       0.001
-4     0.9353816                 0.4       0.001
-5     0.9353749                 0.2       0.001
-6     0.9353684                 0.0       0.001
-7     0.9352382                 0.0       0.005
-8     0.9352319                 0.2       0.005
-9     0.9351997                 0.4       0.005
-10    0.9351574                 0.6       0.005
-11    0.9350911                 0.8       0.005
-12    0.9350407                 0.0       0.010
-13    0.9349922                 1.0       0.005
-14    0.9349559                 0.2       0.010
-15    0.9348013                 0.4       0.010
-16    0.9345296                 0.6       0.010
-17    0.9341032                 0.8       0.010
-18    0.9334750                 1.0       0.010</code></pre>
+<pre><code>   areaUnderROC reg_param_1 elastic_net_param_1
+1     0.9353870       0.001                 0.8
+2     0.9353867       0.001                 1.0
+3     0.9353857       0.001                 0.6
+4     0.9353814       0.001                 0.4
+5     0.9353745       0.001                 0.2
+6     0.9353680       0.001                 0.0
+7     0.9352370       0.005                 0.0
+8     0.9352312       0.005                 0.2
+9     0.9352006       0.005                 0.4
+10    0.9351575       0.005                 0.6
+11    0.9350910       0.005                 0.8
+12    0.9350403       0.010                 0.0
+13    0.9349921       0.005                 1.0
+14    0.9349547       0.010                 0.2
+15    0.9348011       0.010                 0.4
+16    0.9345303       0.010                 0.6
+17    0.9341034       0.010                 0.8
+18    0.9334750       0.010                 1.0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 1a: 0.935482660776576"</code></pre>
@@ -334,7 +412,9 @@ See $.data for the source Arrow object</code></pre>
 1 0.8755316 0.8961886    0.1273821    0.1221424 0.8778576</code></pre>
 </div>
 </div>
+<p>It is observed that there are slight improvements to the Model 1 (CV)’s performance relative to Model 1. In which, we observe that the ROC and Precision values increase in its 4th and 3rd significant figure respectively. Whereas, a decrease in Recall in its 3rd significant figure is observed.</p>
 <p><strong>Logistic Modelling - Model 2</strong></p>
+<p>We then look to create an alternative model that seeks to drop variables that seem to have less explanatory power in determining churned and non-churned customers. This is done primarily through EDA. It is subsequently determined that variables - Tenure, Subscription Type and Usage Frequency be dropped.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 2: 0.935282038899156"</code></pre>
@@ -353,27 +433,28 @@ See $.data for the source Arrow object</code></pre>
 </div>
 </div>
 <p><strong>Logistic Modelling - Model 2 (CV)</strong></p>
+<p>After regularisation, it was determined that the best set of values were 0 and 0.001 for alpha and lambda values respectively. This indicates that a LASSO regularisation was favoured over the other 2 regularisation techniques. Model 2 (CV)’s performance metrics can be viewed in the table below.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   areaUnderROC reg_param_1 elastic_net_param_1
-1     0.9351235       0.001                 1.0
-2     0.9351213       0.001                 0.8
-3     0.9351169       0.001                 0.6
-4     0.9351131       0.001                 0.4
-5     0.9351084       0.001                 0.2
-6     0.9350997       0.001                 0.0
-7     0.9349750       0.005                 0.0
-8     0.9349695       0.005                 0.2
-9     0.9349462       0.005                 0.4
-10    0.9349036       0.005                 0.6
-11    0.9348427       0.005                 0.8
-12    0.9347778       0.010                 0.0
-13    0.9347511       0.005                 1.0
-14    0.9347054       0.010                 0.2
-15    0.9345496       0.010                 0.4
-16    0.9342933       0.010                 0.6
-17    0.9338943       0.010                 0.8
-18    0.9333122       0.010                 1.0</code></pre>
+<pre><code>   areaUnderROC elastic_net_param_1 reg_param_1
+1     0.9351241                 1.0       0.001
+2     0.9351225                 0.8       0.001
+3     0.9351180                 0.6       0.001
+4     0.9351135                 0.4       0.001
+5     0.9351065                 0.2       0.001
+6     0.9351049                 0.0       0.001
+7     0.9349758                 0.0       0.005
+8     0.9349700                 0.2       0.005
+9     0.9349453                 0.4       0.005
+10    0.9349046                 0.6       0.005
+11    0.9348419                 0.8       0.005
+12    0.9347790                 0.0       0.010
+13    0.9347500                 1.0       0.005
+14    0.9347042                 0.2       0.010
+15    0.9345486                 0.4       0.010
+16    0.9342925                 0.6       0.010
+17    0.9338973                 0.8       0.010
+18    0.9333120                 1.0       0.010</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "AUC for model 2a: 0.935280551815638"</code></pre>
@@ -391,11 +472,16 @@ See $.data for the source Arrow object</code></pre>
 1 0.8753594 0.8958475    0.1278596    0.1220709 0.8779291</code></pre>
 </div>
 </div>
+<p>Comparing the differences in performance metrics between Model 3 and Model 3 (CV), there are little differences in their values. The same ROC values are obtained, Precision and Recall values increased and decreased in its 4th significant figure respectively.</p>
+<p><strong>Conclusion</strong></p>
+<p>Observing across the performance metrics of the proposed models, there are little changes in values. In particular, changes including improvements to the values all occur within the 3rd or 4th significant figure which arguably does not represent major improvements across the models. Hence, this suggests that the models proposed have similar predictive capabilities. Keeping this in mind, we can pivot our focus to the principle of parsimony which favours simpler models over complex models without compromising on predictive power. Hence, the principle of parsimony dictates that Model 2 is more favourable due to having fewer variables. Furthermore, to prevent overfitting, regularisation techniques are applied, thus, we can conclude that Model 2 (CV) is an overall better model.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Model successfully saved.</code></pre>
 </div>
 </div>
+<p><strong>Credits</strong></p>
+<p>Chao Soon En Joy Chen Xiangzhen Samson Rachel Tan Yan Ning Wee Su Ying</p>
 
 
 
